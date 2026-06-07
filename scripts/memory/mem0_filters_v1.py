@@ -1,18 +1,7 @@
 from __future__ import annotations
-#!/usr/bin/env python3
-import sys; sys.path.insert(0, "/root/.hermes/scripts")
-"""
-mem0_filters_v1.py — V2 filter helpers for L3 memory.
-
-Centralizes filter logic used by audit, status, budget probe scripts.
-
-Usage:
-    from mem0_filters_v1 import filter_by_topic, filter_by_sacred, filter_by_date
-    
-    # Filter memories
-    sacred = filter_by_sacred(memories)
-    recent = filter_by_date(memories, days=7)
-"""
+"""mem0_filters_v1.py — V2 filter helpers for L3 memory."""
+import sys
+sys.path.insert(0, "/root/.hermes/scripts")
 from typing import Any
 from datetime import datetime, timezone, timedelta
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import sys; sys.path.insert(0, "/root/.hermes/scripts")
 """P2.1: Graph-aware dedup pass using graph=true relationships."""
 import json, time, sys
 from pathlib import Path
@@ -17,9 +16,9 @@ def find_near_dups(threshold=0.85):
                 dups.append((m1, m2, sim))
     return dups
 
-def dedup(dry_run=True):
+def dedup(threshold=0.85, dry_run=True):
     """Remove near-duplicates, keeping longer entry."""
-    dups = find_near_dups()
+    dups = find_near_dups(threshold)
     print(f"Found {len(dups)} near-duplicate pairs")
     
     deleted = 0
@@ -39,9 +38,10 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--threshold", type=float, default=0.85)
     args = parser.parse_args()
     
-    deleted = dedup(dry_run=not args.apply)
+    deleted = dedup(threshold=args.threshold, dry_run=not args.apply)
     if args.apply:
         print(f"Deleted {deleted} duplicates")
     else:
