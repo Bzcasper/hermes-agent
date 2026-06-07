@@ -144,17 +144,17 @@ MEMORY_GUIDANCE = (
     "You have persistent memory across sessions. Save durable facts using the memory "
     "tool: user preferences, environment details, tool quirks, and stable conventions. "
     "Memory is injected into every turn, so keep it compact and focused on facts that "
-    "will still matter later.\n"
+    "will still matter later.\\n"
     "Prioritize what reduces future user steering — the most valuable memory is one "
     "that prevents the user from having to correct or remind you again. "
-    "User preferences and recurring corrections matter more than procedural task details.\n"
+    "User preferences and recurring corrections matter more than procedural task details.\\n"
     "Do NOT save task progress, session outcomes, completed-work logs, or temporary TODO "
     "state to memory; use session_search to recall those from past transcripts. "
     "Specifically: do not record PR numbers, issue numbers, commit SHAs, 'fixed bug X', "
     "'submitted PR Y', 'Phase N done', file counts, or any artifact that will be stale "
     "in 7 days. If a fact will be stale in a week, it does not belong in memory. "
     "If you've discovered a new way to do something, solved a problem that could be "
-    "necessary later, save it as a skill with the skill tool.\n"
+    "necessary later, save it as a skill with the skill tool.\\n"
     "Write memories as declarative facts, not instructions to yourself. "
     "'User prefers concise responses' ✓ — 'Always respond concisely' ✗. "
     "'Project uses pytest with xdist' ✓ — 'Run tests with pytest -n 4' ✗. "
@@ -163,10 +163,17 @@ MEMORY_GUIDANCE = (
     "workflows belong in skills, not memory."
 )
 
-SESSION_SEARCH_GUIDANCE = (
-    "When the user references something from a past conversation or you suspect "
-    "relevant cross-session context exists, use session_search to recall it before "
-    "asking them to repeat themselves."
+TASK_TRACKING_GUIDANCE = (
+    "# Task Tracking Protocol\\n"
+    "When executing multi-step plans or complex tasks:\\n"
+    "- Maintain a live task CSV throughout execution\\n"
+    "- Frontmatter: every CSV must have `# ---` block with `@updated_at: <ISO timestamp>`\\n"
+    "- Update this line on every state transition\\n"
+    "- `status` column transitions must be logged in real time (pending → in_progress → done)\\n"
+    "- `notes` column gets a timestamped entry on every state change or plan revision\\n"
+    "- If the plan shifts mid-execution, the CSV records OLD plan + NEW plan + change timestamp\\n"
+    "- Keep one master `master_tasks.csv` plus per-layer CSVs that mirror the master's status\\n"
+    "- Treat the CSV as the working state-of-truth, not just a deliverable\\n"
 )
 
 SKILLS_GUIDANCE = (
